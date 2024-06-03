@@ -252,7 +252,7 @@ cd ..
 rm -rf PyCG
 ```
 
-4. Install 
+4. Create call graph 
 
 ```
 pycg  --package mypackage  --version 1 --forge PyPI --timestamp 0 --output mypackage $(find mypackage -type f -name "*.py")
