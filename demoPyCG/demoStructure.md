@@ -237,7 +237,7 @@ could still effectively eliminate the number of dependencies to vulnerable code.
 python3 -m venv  myvenv
 source myenv/bin/activate
 ```
-2. Install Pycg
+2. Install Pycg by executing the following commands (below is the complete bash script to run)
 
 ```
 #!/bin/bash
@@ -250,10 +250,44 @@ pip3 install .
 PATH="$HOME/.local/bin:$PATH"
 cd ..
 rm -rf PyCG
+pip3 install install==1.3.5 
+pip3 install setuptools==69.1.0 
+pip3 install wheel==0.42.0
 ```
 
-4. Create call graph 
+3. Create call graph for this project 
 
 ```
-pycg  --package mypackage  --version 1 --forge PyPI --timestamp 0 --output mypackage $(find mypackage -type f -name "*.py")
+pycg --fasten --package mypackage --product mypackage --version 1 --forge PyPI --timestamp 0 --output mypackage.json $(find mypackage -type f -name "*.py")
 ```
+
+4. List all dependencies and download the dependencies' source code
+5. Create a call graph for every dependency source code
+6. Download pycg-stich 
+```
+git clone https://github.com/fasten-project/pycg-stitch.git
+python3 setup.py install
+```
+
+7. Run pycg-stich 
+The call graphs should be in **fasten** format in order to create the stiching graph afterwards
+```
+pycg-stitch --help
+usage: pycg-stitch [-h] [--simple] [-o OUTPUT] [-a] [call_graph ...]
+
+positional arguments:
+  call_graph            Paths to call graphs to be stitched together in JSON format
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --simple              Output in simple format
+  -o OUTPUT, --output OUTPUT
+                        Output path
+  -a, --api             Deploy the server
+  ```
+
+# References
+[1] 1.  Georgios-Petros Drosos, Thodoris Sotiropoulos, Diomidis Spinellis and  Dimitris Mitropoulos.  [Bloat beneath Python’s scales: A fine-grained inter-project dependency analysis](https://dimitro.gr/assets/papers/DSSM24.pdf). In  _Proceedings of the 32th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE ’24)_. To appear.
+[2] [Artifact for FSE paper](https://github.com/gdrosos/bloat-study-artifact/tree/main) 
+[3] [PyCG Repository](https://github.com/gdrosos/PyCG)
+[4] [PyCG stitching repository](https://github.com/fasten-project/pycg-stitch)
