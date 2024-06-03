@@ -229,3 +229,31 @@ This step includes retrieving the stitched call graph of each project and checki
 Quoting the paper: ""In nearly three quarters of the cases (606/816), a project depends on a vulnerable package
 that it does not actually use. Therefore, package-level debloating alone, although less granular,
 could still effectively eliminate the number of dependencies to vulnerable code."
+
+## Demo on running PyCG on an internal project 
+
+1. Set up a virtual environment 
+```
+python3 -m venv  myvenv
+source myenv/bin/activate
+```
+2. Install Pycg
+
+```
+#!/bin/bash
+
+CURRENT_DIR=$(pwd)
+echo Cloning PyCG repository...
+git clone https://github.com/gdrosos/PyCG.git
+cd PyCG
+pip3 install .
+PATH="$HOME/.local/bin:$PATH"
+cd ..
+rm -rf PyCG
+```
+
+4. Install 
+
+```
+pycg  --package mypackage  --version 1 --forge PyPI --timestamp 0 --output mypackage $(find mypackage -type f -name "*.py")
+```
