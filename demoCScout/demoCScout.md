@@ -14,6 +14,17 @@ CScout is a source code analyzer and refactoring browser for collections of C pr
   - identify header files that don't need to be included, and
   - **create call graphs spanning both C functions and function-like macros**
 
+## Installation
+
+   1.  Clone the source code from GitHub (https://github.com/dspinellis/cscout)
+   2.  Enter the CScout directory with cd cscout
+   3.  Run `make`
+   4.  Run `make test` (optional, but highly recommended)
+   5.  Run `sudo make install`. If you want the installation to use a different directory hierarchy than the default `/usr/local`
+    , you can specify this on the command line with the `INSTALL_PREFIX variable`. For example, you run `make install INSTALL_PREFIX=/home/mydir` to install CScout under your home directory or `sudo make install INSTALL_PREFIX=/usr` to install CScout under /usr. 
+
+By default the installation will create in /usr/local/include/cscout headers corresponding to a generic standard C compilation and to your host's specific configuration. If you want to process programs based on other host configurations you can modify these files or create a local version of the files in your home or the project's current directory. 
+
 ## Workflow
 
 ![image](https://github.com/rafailagln/demoSecOPERA/assets/61935258/121e3788-2672-4920-8103-6fee3a41dcc2)
@@ -51,14 +62,49 @@ awk ’
 dot -Tsvg >cgraph.svg
 ```
 
+## Demonstration of usage on npm/ncat
+We will demonstrate the usage of CScout on https://github.com/nmap/nmap/tree/master/ncat.
+
+Ncat, short for Nmap Network Connector, is a versatile command-line tool used for network communication and data exchange. It's often seen as a more advanced and feature-rich alternative to the classic Netcat utility.
+
+### Step 1: Clone the repository and switch to nmap directory
+```
+git clone git@github.com:nmap/nmap.git
+cd nmap
+```
+
+### Step 2: Generate Makefiles through GNU Autoconf
+```
+./configure
+```
+### Step 3: Generate processing script through `csmake` for ncat 
+```
+cd ncat
+csmake 
+```
+### Step 4: Run CScout in browser mode (Option 1 - see below for Option 2)
+```
+cscout make.cs
+```
+### Step 5: View Non-Static Function Call Graph through browser
+If the default port was used, the non-static function call graph will be visible at http://localhost:8081/cgraph.svg
+
+### Step 6: Observe Metrics
+For bloated functions, we can directly observe **Writable functions that are not directly called** or make custom queries for more granularity through **Specify new function query**
+
+
+
+### Step 4: Produce Call Graphs and exit (Option 2)
+Create a non-static function call graph and a compile-time file dependency graph
+```
+cscout make.cs -R cgraph.txt -R fgraph.txt?gtype=C
+```
 
 
 
 
 
-# References
-[1] 1.  Georgios-Petros Drosos, Thodoris Sotiropoulos, Diomidis Spinellis and  Dimitris Mitropoulos.  [Bloat beneath Python’s scales: A fine-grained inter-project dependency analysis](https://dimitro.gr/assets/papers/DSSM24.pdf). In  _Proceedings of the 32th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE ’24)_. To appear.
-[2] [Artifact for FSE paper](https://github.com/gdrosos/bloat-study-artifact/tree/main) 
-[3] [PyCG Repository](https://github.com/gdrosos/PyCG)
-[4] [PyCG stitching repository](https://github.com/fasten-project/pycg-stitch)
+
+
+
 
