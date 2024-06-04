@@ -73,7 +73,8 @@ git clone git@github.com:nmap/nmap.git
 cd nmap
 ```
 
-### Step 2: Generate Makefiles through GNU Autoconf
+### Step 2: Generate Makefiles through GNU Autoconf 
+This step is not necessary in every project
 ```
 ./configure
 ```
