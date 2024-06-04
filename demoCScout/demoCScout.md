@@ -52,12 +52,12 @@ You can use the option *-R* to make CScout generate call graphs and exit. The op
 ```
 # Create a non-static function call graph and a compile-time file dependency graph
 cscout -R cgraph.txt -R fgraph.txt?gtype=C.
-
-
+```
+```
 # Convert the generated call graph into an SVG diagram
 awk ’
  BEGIN { print "digraph G {" }
- {print $1 "->" $2}
+ {print "\"" $1 "\" -> \"" $2 "\""}
  END { print "}" }’ cgraph.txt |
 dot -Tsvg >cgraph.svg
 ```
@@ -99,6 +99,10 @@ Create a non-static function call graph and a compile-time file dependency graph
 ```
 cscout make.cs -R cgraph.txt -R fgraph.txt?gtype=C
 ```
+## Identifying bloated code
+-  Reachability analysis through call graph (i.e., functions reachable through `main`
+-  Function queries through browser
+
 
 
 
