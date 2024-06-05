@@ -104,6 +104,9 @@ cscout make.cs -R cgraph.txt -R fgraph.txt?gtype=C
 -  Reachability analysis through call graph (i.e., functions reachable through `main`
 -  Function queries through browser
 
+## Remarks
+- Functions getting called through function pointers will not appear in the call graphs. This is a common limitation of static call analysis.
+- To handle conditional compilation you can either define macros that will cover all conditional cases, or process the same project multiple times using different macro definitions. See https://www2.dmst.aueb.gr/dds/cscout/doc/short.html.
 
 
 
