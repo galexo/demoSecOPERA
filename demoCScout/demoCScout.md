@@ -2,7 +2,8 @@
 
 ## CScout:
 
-CScout is a comprehensive suite designed to analyze and refactor large codebases written in C. It leverages modern hardware capabilities to perform in-depth analysis that surpasses the limitations of traditional compilers and linkers.
+CScout (https://www2.dmst.aueb.gr/dds/cscout/index.html) is a comprehensive suite designed to analyze and refactor large codebases written in C. It leverages modern hardware capabilities to perform in-depth analysis that surpasses the limitations of traditional compilers and linkers.
+
 
 ## Overview
 
