@@ -11,5 +11,5 @@
         1. issue with #include_next directive not being processed needs to be manually fixed by including the absolute path instead (with #include)
         2. keywords such as _Atomic and \_\_VA_OPT\_\_ are not supported by the CScout parser and thus need to be fixed by editing a local copy of the *host_defs.h* file located by default in */usr/local/include/cscout* and adding a few additional macro definitions that neutralize unknown compiler extensions. 
 
-CScout Github repository: https://github.com/dspinellis/cscout/tree/master
+CScout Github repository: https://github.com/dspinellis/cscout/tree/master  
 CScout User Manual: https://www.spinellis.gr/cscout/doc.html
