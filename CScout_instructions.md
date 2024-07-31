@@ -1,4 +1,5 @@
 # Instructions for running CScout on Component ID #7 of Decomposition Engine Output
+## CScout ran in .../esp-idf-v4.4.7/examples/custom_bootloader/bootloader_hooks subcomponent
 1. #### Make the project buildable as CScout needs to run the csmake script to track the building process
     1. This step involves running the installation script and getting the Python requirements satisfied.
 2. #### Create CScout temporary directory (e.g., *tmp_dir_xtensa*) and set CSMAKEFLAGS environment variable accordingly (export CSMAKEFLAGS='-T </path/to/tmp_dir_xtensa> -d --')
