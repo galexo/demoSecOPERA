@@ -4,7 +4,7 @@
 2. #### Create CScout temporary directory (e.g., *tmp_dir_xtensa*) and set CSMAKEFLAGS environment variable accordingly (export CSMAKEFLAGS='-T </path/to/tmp_dir_xtensa> -d --')
 3. #### Make *csmake* script combatible with custom toolchains (whose direct path is hardcoded in the Makefiles) and the CMake Makefile generator  
     1. Edit the csmake script (by default in */usr/local/bin/csmake* after the installation of CScout) and get the values on the *$real* variables changed to those of the custom toolchains (see csmake of current repository as an example)
-    2. Edit the CMake files in the CMakeFiles/3.25.1 directory of the component on which CScout will run to give them the values of the *tmp_dir_xtensa* scripts (gcc, ar, ld).
+    2. Edit the CMake files in the CMakeFiles/3.25.1 directory of the component on which CScout will run to give them the values of the *tmp_dir_xtensa* scripts (gcc, ar, ld). (see files in custom_cmake of current repository as an example)
     3. Create a build diretory to do an *out of source* build (optional) and run CMake to generate the necessary Makefiles.
 4. #### Run csmake which generates the make.cs file (csmake)
 5. #### Run CScout to generate the call graph (cscout make.cs -R cgraph.txt?<flags>)
